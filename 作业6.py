@@ -11,10 +11,11 @@ def server():
 	listenSocket.bind((IP,PORT))
 
 	listenSocket.listen(8)
-	print(f'           ɹ     {PORT} ˿ڵȴ  ͻ       ...')
+	print(f'服务端启动成功，在{PORT}端口等待客户端连...')
 
 	dataSocket,addr =listenSocket.accept()
-	print('    һ   ͻ       :',addr)
+          
+	print('接受一个客户端连接:',addr)
 
 	while True:
 		receved = dataSocket.recv(BUFLEN)
@@ -23,9 +24,9 @@ def server():
 			break
 
 		info = receved.decode()
-		print(f' յ  Է     Ϣ  {info}')
+		print(f'收到{adder}信息:  {info}')
 
-		dataSocket.send(f'    ˽  յ     Ϣ:{info}'.encode())
+		dataSocket.send(f'服务端接受了信息:{info}'.encode())
 
 	dataSocket.close()
 	listenSocket.close()
